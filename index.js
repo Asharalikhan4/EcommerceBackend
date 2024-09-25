@@ -5,7 +5,8 @@ import cors from "cors";
 import DatabaseConnection from "./src/config/DatabaseConnection.js";
 
 // Routes
-import UserRoutes from "./src/userRoutes/UserRoutes.js";
+import UserRoutes from "./src/routes/UserRoutes.js";
+import ProductRoutes from "./src/routes/ProductRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +28,7 @@ app.get("/api-check", (req, res) => {
     res.status(200).json({ message: `Api is working fine at ${PORT}` });
 });
 app.use("/api/v1/user", UserRoutes);
+app.use("/api/v1/product", ProductRoutes);
 
 // Server
 app.listen(PORT, () => {

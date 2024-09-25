@@ -13,10 +13,13 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    token: {
+        type: String,
+    },
 }, {
     timestamps: true,
 });
 
-const User= model("User", UserSchema);
+const User = model("User", UserSchema);
 export default User;
