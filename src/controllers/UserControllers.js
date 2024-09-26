@@ -76,4 +76,34 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-export { signUp, signIn, getAllUsers };
+const deleteUser = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const user = await User.findByIdAndDelete({ userId });
+        return res.status(200).json({ message: "User deleted successfully" });
+    } catch (error) {
+        return res.status(500).json({ message: "Internal server error", error: error });
+    }
+}
+
+const getSingleUser = async (req, res) => {
+    try {
+        const { _id } = req.params;
+        const user = await User.findById({ _id });
+        return res.status(200).json({ message: "User fetched successfully", user: user });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal server error", error: error });
+    }
+};
+
+const updateUser = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const { name, email, password } = req.body;
+    } catch (error) {
+        return res.status(500).json({ message: "Internal server error", error: error });
+    };
+}
+
+export { signUp, signIn, getAllUsers, deleteUser, getSingleUser };
