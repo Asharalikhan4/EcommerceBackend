@@ -8,17 +8,18 @@ const ProductSchema = new Schema({
     productId: {
         type: String,
         required: true,
+        unqiue: true,
     },
     productDescription: {
         type: String,
         required: true,
     },
     productActualPrice: {
-        type: Number,
+        type: String,
         required: true,
     },
     productSalePrice: {
-        type: Number,
+        type: String,
     },
 }, {
     timestamps: true,

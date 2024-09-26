@@ -1,9 +1,9 @@
-import Product from "../models/ProductModel";
+import Product from "../models/ProductModel.js";
 
 const createProduct = async (req, res) => {
     try {
-        const { name, price, description, productId } = req.body;
-        if(!name || !price || !description || !productId) {
+        const { productName, productId, productDescription, productActualPrice, productSalePrice } = req.body;
+        if(!productName || !productId || !productDescription || !productActualPrice) {
             return res.status(202).json({ message: "All fields are required" });
         };
         const productExist = await Product.findOne({ productId });
@@ -11,10 +11,11 @@ const createProduct = async (req, res) => {
             return res.status(202).json({ message: "Product already exist" });
         };
         const product = new Product({
-            productName: name,
-            productPrice: price,
-            productDescription: description,
+            productName,
             productId,
+            productDescription,
+            productActualPrice,
+            productSalePrice,
         });
         await product.save();
         return res.status(200).json({ message: "Product added successfully" });
